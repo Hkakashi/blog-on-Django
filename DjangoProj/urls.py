@@ -15,17 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from . import helloworld, address, xls_address, login
+from . import helloworld
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', helloworld.index),
-    # path('address', address.index),
-    path('xls/<filename>', xls_address.output),
-    path('login', login.login),
-    path('logout', login.logout),
-    path('wiki/', include('wiki.urls')),
-    path('address/', include('address.urls')),
     path('blog/', include('blog.urls')),
     path('comment/', include('comments.urls')),
 ]
