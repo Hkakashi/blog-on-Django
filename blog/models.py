@@ -42,6 +42,18 @@ class Body(models.Model):
     def increase_views(self):
         self.views += 1
         self.save(update_fields=['views'])
+        
+    def save(self, *args, **kwargs):  # overrides Body.save()
+        if not self.abstract:
+            md = markdown.Markdown(extensions=[
+                'markdown.extensions.extra',
+                'markdown.extensions.codehilite',
+            ])
+            # remove all HTML tags
+            self.abstract = strip_tags(md.convert(self.content))[:54]
+
+        # call un-overrided Body.save()
+        super(Body, self).save(*args, **kwargs)
 
     class Meta:
         ordering = ['-created_time', 'title']  # ordered by created time first. if same, sort it by title
