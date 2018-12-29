@@ -29,6 +29,7 @@ class Body(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)  # imported from django.contrib.auth.models
     created_time = models.DateTimeField()
     modified_time = models.DateTimeField()
+    views = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.title
@@ -37,6 +38,10 @@ class Body(models.Model):
         return reverse('blog:detail', kwargs={'pk': self.pk})  # 'blog:detail' correspond to 'APPNAME:URLPATHNAME'
 
     #  kwargs={'<>': self.xx}   i.e. 'pk'=123 return blog/post/123
+
+    def increase_views(self):
+        self.views += 1
+        self.save(update_fields=['views'])
 
     class Meta:
         ordering = ['-created_time', 'title']  # ordered by created time first. if same, sort it by title

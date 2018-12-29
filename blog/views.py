@@ -14,6 +14,7 @@ def index(request):
 
 def detail(request, pk):
     article = get_object_or_404(Body, pk=pk)
+    article.increase_views()
     article.content = markdown.markdown(article.content,
                                         extensions=[
                                             'markdown.extensions.extra',
