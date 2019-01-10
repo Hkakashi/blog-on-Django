@@ -17,6 +17,7 @@ class IndexView(ListView):
     model = Body
     template_name = 'blog/index.html'
     context_object_name = 'article_list'
+    paginate_by = 2  # paginate
 
 
 # def detail(request, pk):
