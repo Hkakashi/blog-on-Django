@@ -19,7 +19,7 @@ from . import helloworld
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', helloworld.index),
-    path('blog/', include('blog.urls')),
+    path('hello/', helloworld.index),
+    path('', include('blog.urls')),
     path('comment/', include('comments.urls')),
 ]
