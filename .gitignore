@@ -96,3 +96,5 @@ whoosh_index/
 .idea/
 *.sqlite3
 fabfile.py
+*.swp
+0002_auto_20190110_0235.py
